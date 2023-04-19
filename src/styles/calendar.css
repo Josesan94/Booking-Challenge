@@ -1,0 +1,28 @@
+
+.react-calendar {
+    width: 100%;
+    border:none;
+}
+
+.react-calendar button {
+    margin: 2px;
+}
+
+.my-calendar .react-calendar__month-view__days__day.react-calendar__tile {
+    background: #75757536;
+    border-radius: 50%;
+  }
+
+
+
+ .react-calendar__tile--active{
+    background: #a0b0eb !important;
+    border: 1px solid #006edc !important;
+}
+
+
+
+.react-calendar__month-view__days__day--neighboringMonth  {
+    background: white !important;
+    color:white;
+}
