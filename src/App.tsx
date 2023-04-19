@@ -1,8 +1,7 @@
-import { useEffect, useState} from 'react'
-import { Route, Routes, Navigate  } from 'react-router-dom';
-import ProtectedRoute from './routes/ProtectedRoute';
+import { useState } from 'react'
+import { Route, Routes  } from 'react-router-dom';
 import {NavigationBar} from './components/navBar';
-import Home from './components/Home';
+import Home from './components/Home/Home';
 import BookingList from './components/BookingList/BookingList';
 import { Container } from '@chakra-ui/react';
 

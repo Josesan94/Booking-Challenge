@@ -1,4 +1,4 @@
-import { Box, Stack, Button, Heading } from '@chakra-ui/react';
+import { Box, Stack, Button, Heading, Text } from '@chakra-ui/react';
 import { Booking } from '../../App';
 import BookingCard from './BookingCard';
 
@@ -15,7 +15,15 @@ const handleConfirmBooking = () => {
 
   return (
     <>
-    <Heading mt={5} color='purple.500'>
+    {!bookings.length ? (
+      <Stack my={50} alignItems={'center'} justifyContent={'center'}>
+      <Text size={'sm'} color='purple.500'>
+        Sorry! You didn't make any booking. Please, go to homepage and make one.
+      </Text>
+      </Stack>
+    ) : (
+      <>
+      <Heading mt={5} color='purple.500'>
       Bookings to be confirmed
     </Heading>
     <Box my="4">
@@ -32,6 +40,9 @@ const handleConfirmBooking = () => {
         </Button>
       )}
       </Stack>
+      </>
+    )}
+
     </>
   );
 };

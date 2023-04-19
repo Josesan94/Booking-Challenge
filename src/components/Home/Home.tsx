@@ -3,10 +3,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import '@fontsource/raleway/400.css'
 import '@fontsource/open-sans/700.css'
-import { generateRandomStaff } from '../utils/generateRandomData';
+import { generateRandomStaff } from '../../utils/generateRandomData';
 import {
   Stack,
-  Container, 
   FormControl,
   Select,
   Text, 
@@ -15,11 +14,8 @@ import {
   Checkbox} from '@chakra-ui/react'
 import { useFormik } from "formik";
 import { ArrowForwardIcon } from '@chakra-ui/icons'
-import 'react-calendar/dist/Calendar.css';
-import '../styles/calendar.css'
-import DatesCalendar from './Calendar';
-import  useBooking from '../hooks/useBookings'
-import useGrades from '../hooks/useGrades';
+import DatesCalendar from '../Calendar';
+import useGrades from '../../hooks/useGrades';
 
 type Props = {
   setBookings: (arg0: any) => void;
