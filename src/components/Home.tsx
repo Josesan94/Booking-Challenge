@@ -165,7 +165,7 @@ const Home:React.FC<Props> = (props) => {
       </Stack>
     <Stack>
       <Link to='/bookings'>
-    <Button type="button" onClick={handleSubmit} >
+    <Button type="button" onClick={handleSubmit} w="100%" >
       Create Bookings
     </Button>
       </Link>

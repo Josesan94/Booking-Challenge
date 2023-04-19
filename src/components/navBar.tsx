@@ -1,29 +1,22 @@
-import React, { useState } from 'react';
+
 import {
-    Box,
-    Flex,
-    Text,
-    IconButton,
-    Button,
-    Stack,
-    Collapse,
-    Icon,
-    Link,
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-    useColorModeValue,
-    useBreakpointValue,
-    useDisclosure,
-    HStack,
-  } from '@chakra-ui/react';
-  import {
-    HamburgerIcon,
-    LockIcon
-  } from '@chakra-ui/icons';
+  Box,
+  Flex,
+  Text,
+  Stack,
+  Collapse,
+  useColorModeValue,
+  HStack,
+} from '@chakra-ui/react';
+import {
+  HamburgerIcon,
+  ArrowBackIcon
+} from '@chakra-ui/icons';
+import { Link } from 'react-router-dom';
 
 
-  export const NavigationBar = () =>  {
+
+  export const NavigationBar = ({ pageTitle }: { pageTitle: string }) =>  {
 
 
     return (
@@ -39,10 +32,13 @@ import {
           borderColor={useColorModeValue('gray.200', 'gray.900')}
           align={'center'}>
           <Flex flex={{ base: 1 }} justify={{ base: 'flex-start', md: 'start' }}>
-            <HamburgerIcon/>
-            <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-              <DesktopNav />
-            </Flex>
+            {pageTitle === "Make a Booking" ? (
+              <HamburgerIcon/>
+            ) : (
+              <Link to='/'>
+                <ArrowBackIcon/>
+              </Link>
+            )}
           </Flex>
           <HStack
             width={'80%'}
@@ -50,9 +46,7 @@ import {
             justifyContent={'space-evenly'}
             alignItems={'center'}
             spacing={6}>
-                <Text fontWeight={'bold'}>
-                Make a Booking
-                </Text>
+                <Text fontWeight={"bold"}>{pageTitle}</Text>
             <div style={{display:'flex',alignItems:'center', justifyContent:'center',width:'40px', height:'40px', backgroundColor:'grey', borderRadius:'50%'}}>
               <Text color={'white'}>MS</Text>
             </div>
@@ -65,14 +59,6 @@ import {
     );
   }
 
-  const DesktopNav = () => {
-
-    return (
-      <Stack direction={'row'} spacing={4} >
-
-      </Stack>
-    );
-  };
 
 
   const MobileNav = () => {
@@ -85,34 +71,3 @@ import {
     );
   };
   
-  const MobileNavItem = () => {
-    const { isOpen, onToggle } = useDisclosure();
-  
-    return (
-      <Stack spacing={4}>
-        <Flex
-          py={2}
-          as={Link}
-          justify={'space-between'}
-          align={'center'}
-          _hover={{
-            textDecoration: 'none',
-          }}>
-          <Text
-            fontWeight={600}
-            color={useColorModeValue('gray.600', 'gray.200')}>
-          </Text>
-        </Flex>
-        <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
-          <Stack
-            mt={2}
-            pl={4}
-            borderLeft={1}
-            borderStyle={'solid'}
-            borderColor={useColorModeValue('gray.200', 'gray.700')}
-            align={'start'}>
-          </Stack>
-        </Collapse>
-      </Stack>
-    );
-  };

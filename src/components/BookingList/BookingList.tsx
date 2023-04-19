@@ -1,4 +1,4 @@
-import { Box, Stack, Button } from '@chakra-ui/react';
+import { Box, Stack, Button, Heading } from '@chakra-ui/react';
 import { Booking } from '../../App';
 import BookingCard from './BookingCard';
 
@@ -15,7 +15,10 @@ const handleConfirmBooking = () => {
 
   return (
     <>
-    <Box mt="4">
+    <Heading mt={5} color='purple.500'>
+      Bookings to be confirmed
+    </Heading>
+    <Box my="4">
       {bookings.map((booking, index) => (
         <BookingCard key={index} booking={booking} />
         ))}
