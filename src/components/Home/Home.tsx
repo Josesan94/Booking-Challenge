@@ -1,8 +1,6 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
-import '@fontsource/raleway/400.css'
-import '@fontsource/open-sans/700.css'
 import { generateRandomStaff } from '../../utils/generateRandomData';
 import {
   Stack,
@@ -14,7 +12,7 @@ import {
   Checkbox} from '@chakra-ui/react'
 import { useFormik } from "formik";
 import { ArrowForwardIcon } from '@chakra-ui/icons'
-import DatesCalendar from '../Calendar';
+import DatesCalendar from '../Calendar/Calendar';
 import useGrades from '../../hooks/useGrades';
 
 type Props = {

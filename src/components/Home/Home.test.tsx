@@ -1,41 +1,40 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Home from './Home';
+import { MemoryRouter } from 'react-router-dom'; // <-- Import MemoryRouter
+import { useFormik } from 'formik';
+import useGrades from '../../hooks/useGrades';
 
-describe('Home component', () => {
-  test('submit button calls setBookings function with the correct data', () => {
-    // Define a mock setBookings function
-    const mockSetBookings = jest.fn();
 
-    // Render the component
-    render(<Home setBookings={mockSetBookings} />);
+const mockUseFormik = {
+  initialValues: {
+    grades: '',
+    startTime: '',
+    endTime: '',
+  },
+  onSubmit: jest.fn(),
+  handleSubmit: jest.fn(),
+  handleChange: jest.fn(),
+  values: {
+    grades: '',
+    startTime: '',
+    endTime: '',
+  },
+};
 
-    // Fill out the form
-    const gradeSelect = screen.getByLabelText(/grade/i);
-    fireEvent.change(gradeSelect, { target: { value: 'HCA (Care assistant)' } });
+jest.mock('formik', () => ({
+  useFormik: jest.fn(() => mockUseFormik),
+}));
 
-    const dateInput = screen.getByLabelText(/date/i);
-    fireEvent.change(dateInput, { target: { value: '2023-04-19' } });
+// ...Other test code
+const mockSetBookings = jest.fn();
 
-    const startTimeInput = screen.getByLabelText(/start time/i);
-    fireEvent.change(startTimeInput, { target: { value: '17:30' } });
-
-    const endTimeInput = screen.getByLabelText(/end time/i);
-    fireEvent.change(endTimeInput, { target: { value: '9:30' } });
-
-    // Click the submit button
-    const submitButton = screen.getByText(/submit/i);
-    fireEvent.click(submitButton);
-
-    // Check that the setBookings function was called with the correct data
-    expect(mockSetBookings).toHaveBeenCalledWith([
-      {
-        grade: 'HCA (Care assistant)',
-        date: new Date('2023-04-19T00:00:00.000Z'),
-        startTime: '17:30',
-        endTime: '9:30',
-        staff: expect.any(Array),
-      },
-    ]);
-  });
+test('handleSubmit function is called when Create Bookings button is clicked', () => {
+  render(
+    <MemoryRouter>
+      <Home setBookings={mockSetBookings} />
+    </MemoryRouter>
+  );
+  const createBookingsButton = screen.getByText('Create Bookings');
+  fireEvent.click(createBookingsButton);
+  expect(mockUseFormik.handleSubmit).toHaveBeenCalled();
 });

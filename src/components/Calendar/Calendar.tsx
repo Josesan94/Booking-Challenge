@@ -25,7 +25,8 @@ const DatesCalendar:React.FC<Props> = (props) => {
   };
 
 
-
+  // set the minDate to today's date
+  const minDate = new Date();
 
   return (
     <>
@@ -36,6 +37,7 @@ const DatesCalendar:React.FC<Props> = (props) => {
         onChange={handleCalendarChange}
         value={value}
         selectRange={true}
+        minDate={minDate}
         />
     </>
   )
