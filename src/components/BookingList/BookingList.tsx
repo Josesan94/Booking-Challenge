@@ -30,11 +30,13 @@ const BookingList = ({ bookings }: BookingListProps) => {
 							<BookingCard key={index} booking={booking} />
 						))}
 					</Box>
-					<Stack>
+					<Stack mt={20} justifyContent={'center'} alignItems={'center'}>
 						{bookings.length === 0 ? (
 							''
 						) : (
-							<Button onClick={handleConfirmBooking}>Confirm Bookings</Button>
+							<Button width={'50%'} backgroundColor={'blue.300'} onClick={handleConfirmBooking}>
+								Confirm Bookings
+							</Button>
 						)}
 					</Stack>
 				</>

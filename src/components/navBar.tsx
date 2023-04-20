@@ -27,7 +27,7 @@ export const NavigationBar = () => {
 	return (
 		<Box zIndex='1000' boxShadow='dark-lg' marginBottom={0.5}>
 			<Flex
-				bg={useColorModeValue('default', 'gray.800')}
+				bg={useColorModeValue('gray.200', 'gray.100')}
 				color={useColorModeValue('gray.600', 'white')}
 				minH={'60px'}
 				py={{ base: 2 }}
