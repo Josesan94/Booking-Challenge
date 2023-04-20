@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { generateRandomStaff } from '../../utils/generateRandomData';
+import { generateRandomStaff } from '../utils/generateRandomData';
 import {
 	Stack,
 	FormControl,
@@ -12,32 +12,24 @@ import {
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
-import DatesCalendar from '../Calendar/Calendar';
-import useGrades from '../../hooks/useGrades';
+import DatesCalendar from '../components/Calendar/Calendar';
+import useGrades from '../hooks/useGrades';
+import { Booking } from '../models/models';
 
 interface Props {
-	setBookings: (arg0: any) => void;
+	setBookings: React.Dispatch<React.SetStateAction<Booking[]>>
 }
 
-interface Booking {
-	grade: string;
-	date: any;
-	startTime: string;
-	endTime: string;
-	staff: Staff[];
+type SelectedTime = {
+  start: string;
+  end: string;
 }
 
-export interface Staff {
-	firstName: string;
-	lastName: string;
-	isAvailable: boolean;
-}
-
-const Home: React.FC<Props> = (props) => {
+const BookingForm: React.FC<Props> = (props) => {
 	const { setBookings } = props;
 	const { response: grades, loading, error } = useGrades();
 	const [selectedDateRange, setSelectedDateRange] = useState<any>(new Date());
-	const [selectedTimeRange, setSelectedTimeRange] = useState({
+	const [selectedTimeRange, setSelectedTimeRange] = useState<SelectedTime>({
 		start: '',
 		end: '',
 	});
@@ -57,10 +49,11 @@ const Home: React.FC<Props> = (props) => {
 			const newBookings = dates.map((date: Date) => {
 				return {
 					grade: values.grades,
-					date: date.toLocaleDateString('es-ES', {
+					date: date.toLocaleDateString('en-US', {
 						weekday: 'short',
 						day: 'numeric',
 						month: 'short',
+            year:'numeric'
 					}),
 					startTime: values.start,
 					endTime: values.end,
@@ -84,8 +77,8 @@ const Home: React.FC<Props> = (props) => {
 		return dates;
 	}
 
-	const handleStartTimeChange = (startTime: string) => {
-		setSelectedTimeRange((prevState: any) => ({
+	const handleStartTimeChange = (startTime:string) => {
+		setSelectedTimeRange((prevState) => ({
 			...prevState,
 			start: startTime,
 		}));
@@ -139,7 +132,7 @@ const Home: React.FC<Props> = (props) => {
 							value={formik.values.grades}
 						>
 							{loading ? 'loading grades' : ''}
-							{grades?.map((grade: any, index) => (
+							{grades?.map((grade: string, index) => (
 								<option key={index} value={grade}>
 									{grade}
 								</option>
@@ -220,4 +213,4 @@ const Home: React.FC<Props> = (props) => {
 	);
 };
 
-export default Home;
+export default BookingForm;

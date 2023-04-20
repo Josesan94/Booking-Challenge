@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import DatesCalendar from './Calendar';
+import DatesCalendar from '../components/Calendar/Calendar';
 
 test('should not allow selecting past dates', () => {
 	const mockOnChange = jest.fn();

@@ -1,8 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Home from './Home';
-import { MemoryRouter } from 'react-router-dom'; // <-- Import MemoryRouter
-import { useFormik } from 'formik';
-import useGrades from '../../hooks/useGrades';
+import Home from '../pages/Homepage';
+import { MemoryRouter } from 'react-router-dom';
 
 const mockUseFormik = {
 	initialValues: {
@@ -24,7 +22,6 @@ jest.mock('formik', () => ({
 	useFormik: jest.fn(() => mockUseFormik),
 }));
 
-// ...Other test code
 const mockSetBookings = jest.fn();
 
 test('handleSubmit function is called when Create Bookings button is clicked', () => {

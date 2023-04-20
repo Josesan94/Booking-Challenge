@@ -1,5 +1,5 @@
 import { Avatar, Box, Flex, Text, Stack } from '@chakra-ui/react';
-import { type Booking } from '../../App';
+import { Booking } from '../../models/models';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
 interface BookingCardProps {

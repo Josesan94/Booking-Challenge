@@ -1,5 +1,5 @@
 import { Box, Stack, Button, Heading, Text } from '@chakra-ui/react';
-import { type Booking } from '../../App';
+import { Booking } from '../../models/models';
 import BookingCard from './BookingCard';
 
 export interface BookingListProps {
