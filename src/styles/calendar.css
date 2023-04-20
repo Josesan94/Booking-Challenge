@@ -1,21 +1,14 @@
-
 .react-calendar {
-    width:fit-content;
-    border:none;
+	width: fit-content;
+	border: none;
 }
 
-  .react-calendar__tile--active{
-    background: #a0b0eb !important;
-    border: 1px solid #006edc !important;
+.react-calendar__tile--active {
+	background: #a0b0eb !important;
+	border: 1px solid #006edc !important;
 }
 
-.react-calendar__month-view__days__day--neighboringMonth  {
-    background: white !important;
-    color:white;
-} 
-
-
-
-
-
-
+.react-calendar__month-view__days__day--neighboringMonth {
+	background: white !important;
+	color: white;
+}
