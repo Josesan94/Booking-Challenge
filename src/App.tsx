@@ -11,9 +11,7 @@ function App() {
 
 	return (
 		<>
-			<NavigationBar
-				pageTitle={bookings.length === 0 ? 'Make a Booking' : 'Confirm Booking'}
-			/>
+			<NavigationBar/>
 			<Container maxW='container.lg'>
 				<Routes>
 					<Route path='/' element={<Home setBookings={setBookings} />} />

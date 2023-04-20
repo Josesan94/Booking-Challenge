@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { type Staff } from '../App';
+import { Staff } from '../models/models';
 
 export const generateRandomStaff = (count: number) => {
 	const staff: Staff[] = [];
