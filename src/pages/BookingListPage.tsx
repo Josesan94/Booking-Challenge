@@ -6,11 +6,9 @@ export interface BookingListProps {
 }
 
 const BookingListPage = ({ bookings }: BookingListProps) => {
-
-
 	return (
 		<>
-			<BookingList bookings={bookings}/>
+			<BookingList bookings={bookings} />
 		</>
 	);
 };

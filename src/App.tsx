@@ -11,7 +11,7 @@ function App() {
 
 	return (
 		<>
-			<NavigationBar/>
+			<NavigationBar />
 			<Container maxW='container.lg'>
 				<Routes>
 					<Route path='/' element={<Home setBookings={setBookings} />} />

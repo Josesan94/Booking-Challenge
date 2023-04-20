@@ -2,7 +2,7 @@ import { Booking } from '../models/models';
 import BookingForm from '../components/BookingForm';
 
 interface Props {
-  setBookings: React.Dispatch<React.SetStateAction<Booking[]>>
+	setBookings: React.Dispatch<React.SetStateAction<Booking[]>>;
 }
 
 const Home: React.FC<Props> = (props) => {
@@ -10,7 +10,7 @@ const Home: React.FC<Props> = (props) => {
 
 	return (
 		<>
-			<BookingForm setBookings={setBookings}/>
+			<BookingForm setBookings={setBookings} />
 		</>
 	);
 };

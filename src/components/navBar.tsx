@@ -8,25 +8,21 @@ import {
 	HStack,
 } from '@chakra-ui/react';
 import { HamburgerIcon, ArrowBackIcon } from '@chakra-ui/icons';
-import { Link, useLocation  } from 'react-router-dom';
-
-
+import { Link, useLocation } from 'react-router-dom';
 
 export const NavigationBar = () => {
-
 	const location = useLocation();
-
 
 	let pageTitle = '';
 	switch (location.pathname) {
-	  case '/':
-		pageTitle = 'Make a Booking';
-		break;
-	  case '/bookings':
-		pageTitle = 'Accept Booking';
-		break;
-	  default:
-		pageTitle = 'Make a Booking';
+		case '/':
+			pageTitle = 'Make a Booking';
+			break;
+		case '/bookings':
+			pageTitle = 'Accept Booking';
+			break;
+		default:
+			pageTitle = 'Make a Booking';
 	}
 	return (
 		<Box zIndex='1000' boxShadow='dark-lg' marginBottom={0.5}>

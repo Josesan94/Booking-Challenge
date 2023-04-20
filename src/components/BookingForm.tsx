@@ -17,13 +17,13 @@ import useGrades from '../hooks/useGrades';
 import { Booking } from '../models/models';
 
 interface Props {
-	setBookings: React.Dispatch<React.SetStateAction<Booking[]>>
+	setBookings: React.Dispatch<React.SetStateAction<Booking[]>>;
 }
 
 type SelectedTime = {
-  start: string;
-  end: string;
-}
+	start: string;
+	end: string;
+};
 
 const BookingForm: React.FC<Props> = (props) => {
 	const { setBookings } = props;
@@ -53,7 +53,7 @@ const BookingForm: React.FC<Props> = (props) => {
 						weekday: 'short',
 						day: 'numeric',
 						month: 'short',
-            year:'numeric'
+						year: 'numeric',
 					}),
 					startTime: values.start,
 					endTime: values.end,
@@ -77,7 +77,7 @@ const BookingForm: React.FC<Props> = (props) => {
 		return dates;
 	}
 
-	const handleStartTimeChange = (startTime:string) => {
+	const handleStartTimeChange = (startTime: string) => {
 		setSelectedTimeRange((prevState) => ({
 			...prevState,
 			start: startTime,
