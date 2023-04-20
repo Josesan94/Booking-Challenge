@@ -39,16 +39,13 @@ const Home:React.FC<Props> = (props) => {
   const {response:grades, loading, error} = useGrades();
   const [selectedDateRange, setSelectedDateRange] = useState<any>(new Date());
   const [selectedTimeRange, setSelectedTimeRange] = useState({ start: '', end: '' });
-  const [availableStaff, setAvailableStaff] = useState<Staff[]>([]);
-
-
 
 
   const formik = useFormik({
     initialValues: {
       grades: "",
-      startTime: "",
-      endTime: ""
+      end: "",
+      start: "",
     },
     onSubmit: (values) => {
       const dates = getDatesBetween(new Date(selectedDateRange[0]), new Date(selectedDateRange[1]));
@@ -61,8 +58,8 @@ const Home:React.FC<Props> = (props) => {
             day: "numeric",
             month: "short",
           }),
-          startTime: selectedTimeRange.start,
-          endTime: selectedTimeRange.end,
+          startTime: values.start,
+          endTime: values.end,
           staff: generateRandomStaff(1),
       };
     })
@@ -94,8 +91,17 @@ const Home:React.FC<Props> = (props) => {
     const handleSubmit = () => {
       formik.handleSubmit();
     };
-    
 
+
+    if(error) {
+      return (
+        <Stack>
+          <Text>
+            There's been an error with the grades fetch
+          </Text>
+        </Stack>
+      )
+    }
 
   return (
     <>
@@ -107,24 +113,28 @@ const Home:React.FC<Props> = (props) => {
       </Stack>
       <Stack gap={4} marginBottom={5} flexDirection={'column'} alignItems={'center'} justifyContent={'center'}>
           <FormControl>
-          <Select placeholder="Select an option" name="grades" id="grades" 
-                onChange={formik.handleChange}
-                value={formik.values.grades}>
-            {grades?.map((grade:any, index) => (
-              <option key={index}  value={grade}>
-                {grade}
-              </option>
-            ))}
+          <Select 
+            placeholder="Select an option" 
+            name="grades" 
+            id="grades" 
+            onChange={formik.handleChange}
+            value={formik.values.grades}>
+              {loading ? "loading grades" : ""}
+              {grades?.map((grade:any, index) => (
+                <option key={index}  value={grade}>
+                  {grade}
+                </option>
+              ))}
           </Select>
           </FormControl>
           <Stack width={"100%"} flexDirection={'row'} gap={5} alignItems={'center'} justifyContent={'space-around'} >
             <FormControl>
-            <Select placeholder="Select an option" marginTop={2} name="startTime"  id="startTime" 
+            <Select placeholder="Select an option" marginTop={2} name="start"  id="start" 
             onChange={(e) => {
               formik.handleChange(e);
               handleEndTimeChange(e.target.value);
             }}
-                value={formik.values.startTime}
+                value={formik.values.start}
             >
               <option value="9:30">9:30</option>
               <option value="12:30">12:30</option>
@@ -133,12 +143,12 @@ const Home:React.FC<Props> = (props) => {
             </FormControl>
           <ArrowForwardIcon boxSize={10} color="grey"/>
           <FormControl>
-          <Select placeholder="Select an option" name="endTime" id="endTtime" 
+          <Select placeholder="Select an option" name="end" id="end" 
               onChange={(e) => {
                 formik.handleChange(e);
                 handleStartTimeChange(e.target.value);
               }}
-                value={formik.values.endTime}>
+                value={formik.values.end}>
               <option value="9:30">9:30</option>
               <option value="12:30">12:30</option>
               <option value="17:30">17:30</option>
@@ -152,16 +162,14 @@ const Home:React.FC<Props> = (props) => {
       <Button marginY={5} width={'100%'} colorScheme='blue' variant='outline'>
        <Text color="black">Edit Default Settings (2 modified) </Text> 
       </Button>
-      <Stack width={'100%'} alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
-      <FormControl>
+      <FormControl width={'100%'} display={'flex'} justifyContent={'center'}>
         <DatesCalendar onChange={setSelectedDateRange} value={selectedDateRange}/>
     </FormControl>
-      </Stack>
     <Stack>
       <Link to='/bookings'>
-    <Button type="button" onClick={handleSubmit} w="100%" >
+    <Button type="button" onClick={handleSubmit} my={5} w="100%" >
       Create Bookings
-    </Button>
+    </Button >
       </Link>
     </Stack>
       </form>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import '../styles/calendar.css'
+import '../../styles/calendar.css'
 
 interface Props {
   onChange: (date: Date) => void;
@@ -30,7 +30,8 @@ const DatesCalendar:React.FC<Props> = (props) => {
 
   return (
     <>
-      <Calendar  
+      <Calendar
+        locale="en-US"
         formatMonthYear={customFormatMonthYear} 
         formatShortWeekday={customFormatShortWeekday}
         className='my-calendar' 
